@@ -23,10 +23,12 @@ namespace JsonPlaceholder.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IPostService, PostService>();
             services.AddHttpClient<IJsonPlaceholderClient, JsonPlaceholderClient>(c => {
                 c.BaseAddress = new Uri(Configuration["JsonPlaceholderBaseUrl"]);
             });
 
+            services.AddRouting(options => options.LowercaseUrls = true);
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

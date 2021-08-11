@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using JsonPlaceholder.Business.Interfaces;
 using JsonPlaceholder.Business.Models;
@@ -23,13 +24,13 @@ namespace JsonPlaceholder.Api.Controllers
 
         [HttpGet]
         [Route("/user/{userId}")]
-        public async Task<ActionResult<IEnumerable<Post>>> GetPosts(string userId, [FromQuery] int start, [FromQuery] int take)
+        public async Task<ActionResult<IEnumerable<Post>>> GetPosts(int userId, [FromQuery] int start, [FromQuery] int take)
         {
             try
             {
                 var posts = await _postService.GetPosts(userId, start, take);
 
-                if (posts != null)
+                if (posts != null && posts.Any())
                 {
                     return Ok(posts);
                 }

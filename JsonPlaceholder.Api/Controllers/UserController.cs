@@ -22,7 +22,7 @@ namespace JsonPlaceholder.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers([FromQuery] int start, [FromQuery] int take)
+        public async Task<ActionResult<IEnumerable<BasicUser>>> GetUsers([FromQuery] int start, [FromQuery] int take)
         {
             try
             {
